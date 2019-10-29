@@ -1,0 +1,8 @@
+{
+  "name": "js-bf3mey",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "css": "^2.2.4"
+  }
+}

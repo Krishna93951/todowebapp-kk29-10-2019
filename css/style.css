@@ -1,0 +1,121 @@
+h1{
+    text-align: center;
+    font-size: 43px;
+    margin: auto;
+    width: 250px;
+    color: rgb(0, 0, 0);
+}
+
+#storage {
+    margin-left: 1px;
+    padding: 5px;
+}
+
+body {
+    height: 450px;
+    width: 95%;
+    background-color: rgb(255, 255, 255); 
+}
+
+#todoList {
+    margin-top: 20px;
+    margin-left: 5px;
+    padding: 0;
+    margin-right: 5px;
+}
+
+#todoList li {
+    position: relative;
+    padding: 5px 8px 1px 10px;
+    list-style-type: none;
+    background: rgba(205, 69, 223, 0);
+    font-size: 22px;
+    color: rgb(0, 0, 0);
+    font-style: italic
+}
+
+#todoList li:hover {
+    background: rgb(255, 255, 255)
+}
+   
+#todoList{
+    overflow-y: scroll;
+    height: 290px;
+    width: 95%;
+    margin-left: 14px;
+}
+
+.remove {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 5px 8px 5px 10px;
+}
+
+.remove:hover {
+    background-color: rgb(255, 0, 0);
+    color: white;
+}
+  
+#container{
+      margin-top: 10px;
+}
+
+#container {
+     border-top-style: solid;
+     border-top-color: rgb(0, 0, 0);
+     border-bottom-style: solid;
+     background-color: rgb(220, 255, 255);
+     border-bottom-color: rgb(0, 0, 0);
+}
+  
+#input {
+    margin-left: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    min-width: 250px;
+    max-width: 50%;
+    height: 30px;
+}
+
+#addBtn{
+    height: 30px;
+    width: 60px;;
+}
+  
+#addBtn:hover {
+    background-color: green;
+    color: white;
+}
+
+#main {
+      border: rgb(0, 0, 0);
+      margin: auto;
+      border-style: solid;
+      height:450px;
+      width: 430px;
+      background-color: rgb(220, 255, 255);
+}
+
+p{
+   font-size: 25px;
+   margin: auto;
+   font-family: Arial, Helvetica, sans-serif;
+   width:550px;
+   color : rgb(0, 0, 0);
+}
+
+#note{
+    margin-left: 1px;
+    color: rgb(0, 0, 0);
+    font-size: 22px;
+}
+
+#actions{
+    padding:5px;
+}
+
+ul li #check:checked + span {
+    color: rgb(255, 0, 0);
+    text-decoration: line-through;
+}

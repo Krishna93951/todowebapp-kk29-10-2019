@@ -1,0 +1,36 @@
+<html>
+
+<head>
+	<link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+	<h1> My Todo List </h1>
+	<div id="main">
+		<div id="actions">
+			<strong id="note">Please select a storage before adding items.</strong>
+			<select name="storage" id="storage">
+        <!-- <option>Select the Storage type</option> -->
+        <option id="localstorage" value="LocalStorage">LocalStorage</option>
+        <option id="sessionstorage" value="SessionStorage">SessionStorage</option>
+      </select>
+			<div id="container">
+				<input id="inputField" maxlength="40" placeholder="Enter your To-do" />
+				<input type="button" id="addBtn" value="Add" class="addBtn" />
+      </div>
+			</div>
+			<div>
+				<strong>
+        <ul id="todoList"></ul>
+      </strong>
+			</div>
+		</div>
+		<p id="allTask"></p>
+		<script src="./src/model.js"></script>
+		<script src="./src/view.js"></script>
+		<script src="./src/controller.js"></script>
+		<script src="./src/manager.js"></script>
+		<script src="./utility/polyfill.js"></script>
+</body>
+
+</html>
