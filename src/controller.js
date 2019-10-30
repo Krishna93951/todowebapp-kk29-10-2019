@@ -33,11 +33,11 @@ function App() {
     var selectedOption = document.getElementById("storage");
     selectedOption.addEventListener(
       "change",
-      this_.actionsAfterChoosingDataStorage
+      this_.onChoosingDataStorage
     );
   };
 
-  this.actionsAfterChoosingDataStorage = function() {
+  this.onChoosingDataStorage = function() {
     this_.displayTasks();
     this_.clearAndFocusTextField();
     this_.tasksCount();
