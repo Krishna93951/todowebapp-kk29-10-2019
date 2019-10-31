@@ -4,9 +4,11 @@ function App(storageKey) {
   
   var this_ = this;
 
-  this.init= (function () {
+  this.init= function () {
+    viewInstance().createAddButton();
     viewInstance().emptyList();
-  })();
+    this_.selectStorageType()
+  };
 
   this.createStorageInstance = function () {
     var selectedOption = document.getElementById("storage").value;
@@ -27,10 +29,7 @@ function App(storageKey) {
   };
 
   this.attachEvents = function() {
-    var addButton = document.getElementById("addBtn");
-    var todo = document.getElementById("inputField");
-    addButton.addEventListener("click", this_.addTaskOnClick);
-    todo.addEventListener("keypress", this_.addTaskOnKeyPress);
+    document.getElementById("inputField").addEventListener("keypress", this_.addTaskOnKeyPress);
   };
 
   this.onSelectionOfStorageType = function() {
@@ -77,10 +76,10 @@ function App(storageKey) {
 
   this.updateStorage = function(itemId) {
     var taskData = this_.getData();
-    var itemIndex = taskData.findIndex(function(element) {
+    var deleteObject = taskData.findIndex(function(element) {
         return element.id === Number(itemId);
     });
-    taskData.splice(itemIndex, 1);
+    taskData.splice(deleteObject, 1);
     this_.storeData(taskData);
   };
 
@@ -95,47 +94,52 @@ function App(storageKey) {
     this_.storeData(taskData);
     this_.tasksCount();
   };
-
-  this.attachTickBoxEvent = function(selectionBox) {
+  
+  this.attachCheckboxEvent = function(selectionBox) {
     selectionBox.addEventListener("click", this_.toggleStatus);
   };
 
-  this.attachDeleteButtonEvent = function(deleteButton) {
-    deleteButton.addEventListener("click", this_.deleteTaskFromList);
-  };
-
-  App.prototype.addTaskOnClick = function() {
-    this_.addTasks();
-  };
-  
-  App.prototype.addTaskOnKeyPress = function(e) {
-    if (e.keyCode === 13) {
-      this_.addTasks();
-    }
-  };
-  
-  App.prototype.tasksCount = function() {
-    var list = document.querySelector("#todoList");
-    var taskData = this.getData();
-    var checkbox = list.querySelectorAll('input[type="checkbox"]:checked');
-    var pending;
-    var checkedCount = 0;
-    for (var i = 0; i < checkbox.length; i++) {
-      checkboxCount = checkbox[i].checked ? checkedCount++ : checkedCount--;
-    }
-    pending = taskData.length - checkedCount;
-    viewInstance().totalMsg(checkedCount, pending);
-  };
-  
-  App.prototype.clearAndFocusTextField = function() {
-    var todo = document.getElementById("inputField");
-    todo.value = "";
-    todo.focus();
-  };
-
-  App.prototype.selectStorageType = (function() {
-    var selectedOption = document.getElementById("storage");
-    selectedOption.addEventListener("change",this_.onSelectionOfStorageType);
-  })();
+  this.attachEventOnElementCreation = function (element,callback){
+    element.addEventListener("click",callback);
+  }
 
 }
+
+App.prototype.addTaskOnClick = function() {
+  controllerInstance.addTasks();
+};
+
+App.prototype.addTaskOnKeyPress = function(e) {
+  if (e.keyCode === 13) {
+    controllerInstance.addTasks();
+  }
+};
+
+App.prototype.tasksCount = function() {
+  var list = document.querySelector("#todoList");
+  var taskData = this.getData();
+  var checkbox = list.querySelectorAll('input[type="checkbox"]:checked');
+  var pending;
+  var checkedCount = 0;
+  for (var i = 0; i < checkbox.length; i++) {
+    checkboxCount = checkbox[i].checked ? checkedCount++ : checkedCount--;
+  }
+  pending = taskData.length - checkedCount;
+  viewInstance().totalMsg(checkedCount, pending);
+};
+
+App.prototype.clearAndFocusTextField = function() {
+  var todo = document.getElementById("inputField");
+  todo.value = "";
+  todo.focus();
+};
+
+App.prototype.selectStorageType = function() {
+  document.getElementById("storage").addEventListener("change",this.onSelectionOfStorageType);
+};
+
+(function () {
+return{  
+initialization : controllerInstance.init()
+}
+})();
