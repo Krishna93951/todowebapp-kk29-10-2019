@@ -1,28 +1,29 @@
-var controllerInstance = new App(prompt("Please Enter Storage Key"));
+var controllerInstance = new App(prompt("Please Enter Storage Key"))
 
 function App(storageKey) {
+  
   var this_ = this;
 
-  this.init = (function() {
+  this.init= (function () {
     viewInstance().emptyList();
   })();
 
-  this.createStorageInstance = function() {
+  this.createStorageInstance = function () {
     var selectedOption = document.getElementById("storage").value;
     var storage = {
-      key: storageKey,
+      key : storageKey,
       LocalStorage: "LocalStorage",
       SessionStorage: "SessionStorage"
     };
     return new StorageManager(storage[selectedOption], storage.key);
   };
-
-  this.storeData = function(taskData) {
+  
+  this.storeData = function (taskData) {
     this_.createStorageInstance().setData(taskData);
   };
-
-  this.getData = function() {
-    return this_.createStorageInstance().getData();
+  
+  this.getData = function () {
+      return this_.createStorageInstance().getData();
   };
 
   this.attachEvents = function() {
@@ -43,15 +44,11 @@ function App(storageKey) {
     list.innerHTML = "";
     var taskData = this_.getData();
     for (i = 0; i < taskData.length; i++) {
-      viewInstance().createElements(
-        taskData[i].id,
-        taskData[i].name,
-        taskData[i].status
-      );
+      viewInstance().createElements(taskData[i].id,taskData[i].name,taskData[i].status);
     }
     this_.attachEvents();
   };
-
+  
   this.addTasks = function() {
     var notifyMessage = {
       inputField: "Enter Valid Input"
@@ -65,7 +62,7 @@ function App(storageKey) {
       todos = { id: Date.now(), name: inputField, status: false };
       taskData.push(todos);
       this_.storeData(taskData);
-      viewInstance().createElements(todos.id, inputField, todos.status);
+      viewInstance().createElements(todos.id,inputField,todos.status);
       this_.clearAndFocusTextField();
       this_.tasksCount();
     }
@@ -81,7 +78,7 @@ function App(storageKey) {
   this.updateStorage = function(itemId) {
     var taskData = this_.getData();
     var deleteObject = taskData.findIndex(function(element) {
-      return element.id === Number(itemId);
+        return element.id === Number(itemId);
     });
     taskData.splice(deleteObject, 1);
     this_.storeData(taskData);
@@ -107,18 +104,16 @@ function App(storageKey) {
     deleteButton.addEventListener("click", this_.deleteTaskFromList);
   };
 
-  newFunction(this_);
-}
-
-function newFunction(this_) {
   App.prototype.addTaskOnClick = function() {
     this_.addTasks();
   };
+  
   App.prototype.addTaskOnKeyPress = function(e) {
     if (e.keyCode === 13) {
       this_.addTasks();
     }
   };
+  
   App.prototype.tasksCount = function() {
     var list = document.querySelector("#todoList");
     var taskData = this.getData();
@@ -131,13 +126,16 @@ function newFunction(this_) {
     pending = taskData.length - checkedCount;
     viewInstance().totalMsg(checkedCount, pending);
   };
+  
   App.prototype.clearAndFocusTextField = function() {
     var todo = document.getElementById("inputField");
     todo.value = "";
     todo.focus();
   };
+
   App.prototype.selectStorageType = (function() {
     var selectedOption = document.getElementById("storage");
-    selectedOption.addEventListener("change", this_.onSelectionOfStorageType);
+    selectedOption.addEventListener("change",this_.onSelectionOfStorageType);
   })();
+
 }
