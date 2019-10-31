@@ -27,7 +27,7 @@ function View() {
       selectionBox.type = "checkbox";
       selectionBox.setAttribute("id", "tick");
       selectionBox.checked = status;
-      controllerInstance.attachCheckBoxEvent(selectionBox);
+      controllerInstance.attachTickBoxEvent(selectionBox);
       li.appendChild(selectionBox);
     };
 
