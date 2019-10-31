@@ -77,10 +77,10 @@ function App(storageKey) {
 
   this.updateStorage = function(itemId) {
     var taskData = this_.getData();
-    var deleteObject = taskData.findIndex(function(element) {
+    var itemIndex = taskData.findIndex(function(element) {
         return element.id === Number(itemId);
     });
-    taskData.splice(deleteObject, 1);
+    taskData.splice(itemIndex, 1);
     this_.storeData(taskData);
   };
 
