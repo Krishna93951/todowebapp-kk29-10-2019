@@ -45,14 +45,14 @@ body {
     margin-left: 14px;
 }
 
-.remove {
+#remove {
     position: absolute;
     right: 0;
     top: 0;
     padding: 5px 8px 5px 10px;
 }
 
-.remove:hover {
+#remove:hover {
     background-color: rgb(255, 0, 0);
     color: white;
 }
@@ -69,7 +69,7 @@ body {
      border-bottom-color: rgb(0, 0, 0);
 }
   
-#input {
+#inputField {
     margin-left: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -88,11 +88,22 @@ body {
     color: white;
 }
 
+#delBtn {
+    height: 30px;
+    margin-left: 5px;
+    width: 130px;
+}
+
+#delBtn:hover {
+    background-color: red;
+    color: white;
+}
+
 #main {
       border: rgb(0, 0, 0);
       margin: auto;
       border-style: solid;
-      height:450px;
+      height:490px;
       width: 430px;
       background-color: rgb(220, 255, 255);
 }
@@ -100,6 +111,7 @@ body {
 p{
    font-size: 25px;
    margin: auto;
+   margin-top: 10px;
    font-family: Arial, Helvetica, sans-serif;
    width:550px;
    color : rgb(0, 0, 0);
@@ -115,7 +127,7 @@ p{
     padding:5px;
 }
 
-ul li #check:checked + span {
+ul li #tick:checked + span {
     color: rgb(255, 0, 0);
     text-decoration: line-through;
 }

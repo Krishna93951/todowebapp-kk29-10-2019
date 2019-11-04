@@ -1,10 +1,9 @@
-var controllerInstance = new App(prompt("Please Enter Storage Key"))
-
 function App(storageKey) {
   
   var this_ = this;
 
   this.init= function () {
+    viewInstance().createDeleteAllButton();
     viewInstance().createAddButton();
     viewInstance().emptyList();
     this_.selectStorageType()
@@ -103,6 +102,17 @@ function App(storageKey) {
     element.addEventListener("click",callback);
   }
 
+  this.deleteCompleted = function (){
+    var taskData = this_.getData();
+    for (var i = taskData.length - 1; i >= 0; i--) {
+      if (taskData[i].status === true ) {
+          taskData.splice(i, 1);
+      }
+  }
+  this_.storeData(taskData)
+  this_.displayTasks()
+  this_.tasksCount();
+}
 }
 
 App.prototype.addTaskOnClick = function() {
@@ -137,6 +147,8 @@ App.prototype.clearAndFocusTextField = function() {
 App.prototype.selectStorageType = function() {
   document.getElementById("storage").addEventListener("change",this.onSelectionOfStorageType);
 };
+
+var controllerInstance = new App("myStorage");
 
 (function () {
 return{  
